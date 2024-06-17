@@ -1,15 +1,26 @@
+document.getElementById('createTableButton').addEventListener('click', createTable);
+
 function createTable() {
-    let btn = document.getElementById('myTable');
-    btn.addEventListener("click", function() {
-        let pt1 = prompt("input number of rows");
-        let pt2 = prompt("Input number of columns");
-        let table = document.getElementById('myTable');
-        for(let i = 0; i < pt1; i++) {
-            let row = table.insertRow(i);
-            for(let j = 0; j < pt2; j++) {
-                let cell = row.insertCell(j);
-                cell.innerHTML = `Row-${i} Column-${j}`;
-            }
+    // Get the number of rows and columns from the user
+    const numRows = parseInt(prompt('Input number of rows'), 10);
+    const numCols = parseInt(prompt('Input number of columns'), 10);
+
+    // Get the table element
+    const table = document.getElementById('myTable');
+
+    // Clear any existing table content
+    table.innerHTML = '';
+
+    // Create the rows and columns
+    for (let i = 0; i < numRows; i++) {
+        const row = document.createElement('tr');
+
+        for (let j = 0; j < numCols; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = `Row-${i} Column-${j}`;
+            row.appendChild(cell);
         }
-    });
+
+        table.appendChild(row);
+    }
 }
